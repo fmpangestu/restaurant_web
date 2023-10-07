@@ -1,0 +1,53 @@
+@import "main.css";
+
+$creame: #EDF1D6;
+$matcha: #9DC08B;
+$green: #609966;
+$greyTua: #40513B;
+.content {
+  background-color: $creame;
+  color: $green;
+}
+a, button, input, textarea {
+  display: inline-block;
+  min-width: 44px;
+  min-height: 44px;
+}
+.header {
+  background-color: $matcha;
+}
+
+nav ul li a {
+  color: $greyTua;
+}
+
+footer {
+  background-color: $matcha;
+  color: $greyTua;
+}
+
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  background-color: $greyTua;
+  color: $creame;
+  padding: 8px;
+  z-index: 100;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.headline_sub {
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+  color: $green;
+  position: relative;
+  font-weight: 400;
+  font-size: .7rem;
+  margin-top: 5px;
+}
+
