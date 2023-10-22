@@ -1,16 +1,21 @@
+import CONFIG from '../globals/config';
+
 class restItem extends HTMLElement {
-    constructor() {
-        super();
-        this.restDom = this.attachShadow({mode: "open"});
-    }
+  constructor() {
+    super();
+    this.restDom = this.attachShadow({ mode: 'open' });
+  }
 
-    set rest(rest) {
-        this._rest = rest;
-        this.render();
-    }
+  set rest(rest) {
+    // eslint-disable-next-line no-underscore-dangle
+    this._rest = rest;
+    this.render();
+  }
 
-    render() {
-        this.restDom.innerHTML = `
+  render() {
+    // eslint-disable-next-line no-underscore-dangle
+    const rest = this._rest;
+    this.restDom.innerHTML = `
 <style>
 .card{
 position: relative;
@@ -21,7 +26,7 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 margin: 20px auto;
 height: 90%;
 background-color:white;
-    color: #609966;
+color: #609966;
 }
 .city {
   position: absolute;
@@ -44,7 +49,7 @@ background-color:white;
   left: 0;
   opacity: 1;
   pointer-events: auto;
-  top: -1px;
+  top: 1px;
 }
 .card img{
 width: 100%;
@@ -79,6 +84,34 @@ margin-top: 12px;
 .filled {
     color: #fbc02d; 
 }
+.card-content .rating {
+display: flex;
+justify-content: space-between;
+}
+/*detail*/
+.detail {
+position: relative;
+  padding: 12px;
+  width: 20%;
+  top: -50%;
+  background-color: #609966;
+  color: white;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  text-decoration: none;
+  transition: right 0.3s ease, opacity 0.3s ease;
+  text-align: center;
+}
+
+.card:hover .detail,
+.card:focus-within .detail {
+  opacity: 1;
+  pointer-events: auto;
+  
+}
 @media screen and (min-width: 550px){
     .card img{
     height: 200px;
@@ -86,6 +119,7 @@ margin-top: 12px;
     .card .description{
     width: 100%;
     }
+    
 }
 @media screen and (max-width: 480px){
     .card {
@@ -95,7 +129,9 @@ margin-top: 12px;
     .card .description{
     width: 100%;
     }
+    
 }
+
 @media screen and (min-width: 900px) {
 .card{
 width: 100%;
@@ -105,39 +141,39 @@ height: 100%;
 </style>
 
 
-      <article  class="card" tabindex="0" >
-        <p class="city" aria-label="Kota ${this._rest.city},">${this._rest.city}</p>
-        <img src="${this._rest.pictureId}" alt="${this._rest.name}">
+      <article class="card" tabindex="0">
+        <p class="city" aria-label="Kota ${rest.city},">${rest.city}</p>
+        <img src="${CONFIG.BASE_IMAGE_URL + rest.pictureId}" alt="${rest.name}">
         <div class="card-content">
-                <h3 class="name_resto" aria-label="Nama restoraunt ${this._rest.name},">${this._rest.name}</h3>
+            <h3 class="name_resto" aria-label="Nama restoraunt ${rest.name},">${rest.name}</h3>
             <div class="rating" >
-                <p aria-label="rating ${this._rest.rating},">${this.generateStarRating(this._rest.rating)}
-                ${this._rest.rating}</p>
+            <p aria-label="rating ${rest.rating},">${this.generateStarRating(rest.rating)} ${rest.rating}</p>
+            <p><a href="/#/detail/${rest.id}" aria-label="detail restaurant ${rest.name}," class="detail">Detail</a></p>
             </div>
-             <p class="description" aria-label="Description restaurant ${this._rest.description},">${this._rest.description}</p>
+            <p class="description" aria-label="Description restaurant ${rest.description},">${rest.description}</p>
         </div>
     </article>
       
 `;
-    };
+  }
 
-    generateStarRating(rating) {
-        const maxRating = 5;
-        const roundedRating = Math.round(rating * 2) / 2;
-        let starHTML = '';
+  // eslint-disable-next-line class-methods-use-this
+  generateStarRating(rating) {
+    const maxRating = 5;
+    const roundedRating = Math.round(rating * 2) / 2;
+    let starHTML = '';
 
-        for (let i = 1; i <= maxRating; i++) {
-            if (i <= roundedRating) {
-                starHTML += '<span class="star filled">★</span>';
-            } else {
-                starHTML += '<span class="star">☆</span>';
-            }
-        }
-
-        return starHTML;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 1; i <= maxRating; i++) {
+      if (i <= roundedRating) {
+        starHTML += '<span class="star filled">★</span>';
+      } else {
+        starHTML += '<span class="star">☆</span>';
+      }
     }
 
-
+    return starHTML;
+  }
 }
 
-customElements.define("rest-item", restItem);
+customElements.define('rest-item', restItem);
