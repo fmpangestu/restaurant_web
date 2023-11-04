@@ -177,3 +177,4 @@ height: 100%;
 }
 
 customElements.define('rest-item', restItem);
+export default restItem;

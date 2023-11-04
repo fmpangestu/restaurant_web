@@ -1,14 +1,12 @@
-// import NowPlaying from '../views/pages/now-playing';
-// import Upcoming from '../views/pages/upcoming';
+import ListRestaurant from '../view/pages/list-restaurant';
 import Detail from '../view/pages/detail';
-// import Like from '../views/pages/like';
+import Like from '../view/pages/like';
 
 const routes = {
-  // '/': NowPlaying,
-  // '/now-playing': NowPlaying,
-  // '/upcoming': Upcoming,
+  '/': ListRestaurant,
+  '/list-restaurant': ListRestaurant,
   '/detail/:id': Detail,
-  // '/like': Like,
+  '/like': Like,
 };
 
 export default routes;

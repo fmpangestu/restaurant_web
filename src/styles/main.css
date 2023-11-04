@@ -30,7 +30,7 @@ body {
     display: flex;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 100000;
 }
 
 .nav {
@@ -152,44 +152,20 @@ main {
 }
 
 /*card*/
-#restaurantList {
+#restaurantList, #restaurants {
     margin: 32px auto auto;
     text-align: left;
     justify-content: center;
 }
-
-/*footer*/
-footer {
-    padding: 1rem 0;
-    /*background: #183d3d;*/
-    text-align: center;
-    color: #93B1A6;
-}
-
-.footer-icon {
-    margin-bottom: 1rem;
-}
-
-.footer-icon a {
-    margin: 0 .5rem;
-}
-
-.footer-icon svg {
-    fill: #40513B;
-}
-
-.footer-icon svg:hover {
-    fill: #609966;
-}
-
 @media screen and (min-width: 550px) {
 
     /*    card*/
-    #restaurantList {
+    #restaurantList , #restaurants {
         display: grid;
         grid-template-columns: repeat(2, 50%);
         gap: 20px;
     }
+
 
     /*    mohon maaf saya letakkan pada width ini, karena card sudah terlihat lebih besar.
     dan pada hamburger memang sengaja di tampilkan pada width 680, karena nav sudah tidak kondusif*/
@@ -261,7 +237,7 @@ footer {
 
 @media screen and (min-width: 900px) {
 
-    #restaurantList {
+    #restaurantList , #restaurants{
         display: grid;
         grid-template-columns: repeat(3, 30%);
         gap: 29px;

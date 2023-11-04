@@ -1,6 +1,10 @@
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -25,7 +29,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/, // Atur untuk mengenali file SCSS
+        test: /\.scss$/,
         use: [
           {
             loader: 'style-loader',
@@ -34,7 +38,7 @@ module.exports = {
             loader: 'css-loader',
           },
           {
-            loader: 'sass-loader', // Tambahkan loader untuk SCSS
+            loader: 'sass-loader',
           },
         ],
       },
@@ -52,6 +56,10 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/'),
         },
       ],
+    }),
+    new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
+      swDest: './sw.bundle.js',
     }),
   ],
 };

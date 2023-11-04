@@ -51,3 +51,455 @@ footer {
   margin-top: 5px;
 }
 
+
+
+/*
+  restaurant
+*/
+
+.restaurant-item {
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.restaurant-item__header {
+  position: relative;
+}
+
+.restaurant-item .restaurant-item__header .restaurant-item__header__poster {
+  width: 100%;
+}
+
+.restaurant-item .restaurant-item__header .restaurant-item__header__rating {
+  position: absolute;
+  padding: 8px;
+  bottom: 20px;
+  left: 0;
+  display: inline-block;
+  background-color: black;
+  color: white;
+}
+
+
+
+.restaurant-item .restaurant-item__content {
+  padding: 16px;
+}
+
+.restaurant-item .restaurant-item__content h3 {
+  margin: 0 0 10px 0;
+}
+
+.restaurant-item .restaurant-item__content h3 a {
+  color: #db0000;
+  text-decoration: none;
+}
+
+.restaurant-item .restaurant-item__content p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+
+/*
+  restaurant
+*/
+.restaurant__info {
+  margin: 10px;
+}
+.restaurant__info h2 {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+.restaurant__info p{
+  margin-left: 10px;
+}
+.restaurant {
+  margin: 30px auto;
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px 16px;
+  justify-items: center;
+}
+
+.restaurant .restaurant__poster {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.restaurant .restaurant__info h4 {
+  margin: 8px 0;
+}
+.restaurant__overview p{
+  margin-left:5% ;
+  margin-top: 10px;
+  text-align:justify ;
+}
+
+// class categori
+
+
+.menu-categories {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+}
+.menu-categories ul{
+  margin-left: 5%;
+
+}
+.food-categories, .drink-categories {
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+}
+.food-categories li, .drink-categories li {
+  font-size: 16px;
+  color: #333;
+  margin-left: 15px;
+
+}
+
+
+
+//riviewe
+.customer__riview {
+  margin-top: 10px;
+}
+.customer__riview p{
+  color: #a9a5a5;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: justify;
+}
+.customer__riview span{
+  color: black;
+}
+.customer__riview .date__review {
+  font-size: 12px;
+  margin-top: 0;
+}
+
+//like
+.like {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #db0000;
+
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 50%;
+  border: 0;
+
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+//card
+.card{
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow:hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin: 20px auto;
+  height: 90%;
+  background-color:white;
+  color: #609966;
+}
+.city {
+  position: absolute;
+  padding: 12px;
+  width: 30%;
+  top: -1px;
+  background-color: #609966;
+  color: white;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  left: -100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: left 0.3s ease, opacity 0.3s ease;
+}
+
+.card:hover .city,
+.card:focus-within .city {
+  left: 0;
+  opacity: 1;
+  pointer-events: auto;
+  top: 1px;
+}
+.card img{
+  width: 100%;
+}
+.card-content{
+  padding: 16px 32px 32px 32px;
+}
+.card-content .name_resto{
+  margin: 0;
+  padding: 0;
+}
+.card-content .rating p{
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+.card-content .description{
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.5em;
+  text-align: justify;
+}
+.card-content .descripti{
+  margin-top: 12px;
+}
+.star {
+  font-size: 18px;
+  color: #f5ce42;
+  margin-right: 4px;
+}
+
+.filled {
+  color: #fbc02d;
+}
+.card-content .rating {
+  display: flex;
+  justify-content: space-between;
+}
+/*detail*/
+.detail {
+  position: relative;
+  padding: 12px;
+  width: 100%;
+  top: -50%;
+  background-color: #609966;
+  color: white;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  text-decoration: none;
+  transition: right 0.3s ease, opacity 0.3s ease;
+  text-align: center;
+}
+
+.card:hover .detail,
+.card:focus-within .detail {
+  opacity: 1;
+  pointer-events: auto;
+
+}
+@media screen and (min-width: 550px){
+  .card img{
+    height: 200px;
+  }
+  .card .description{
+    width: 100%;
+  }
+
+}
+@media screen and (max-width: 480px){
+  .card {
+    width:100%;
+    margin: 25px auto;
+  }
+  .card .description{
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 900px) {
+  .card{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+//form
+.review-modal {
+  /* Modal styles */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+}
+
+.review-form {
+  /* Form container styles */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 70%;
+}
+
+.review-form label {
+  /* Label styles */
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+  /* Input and textarea styles */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.review-form button[type="submit"],
+.review-form button.cancel-button {
+  /* Submit and Cancel button styles */
+  background-color: $greyTua;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.review-form button.cancel-button {
+  /* Cancel button specific styles */
+  background-color: $matcha;
+}
+.add-review-button {
+  background-color: $green;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-review-button:hover {
+  background-color: $matcha;
+}
+//footer
+.container{
+  max-width: 1170px;
+  margin:auto;
+}.container p{
+  text-align: center;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+ul{
+  list-style: none;
+}
+.footer{
+  background-color: $matcha;
+  padding: 70px 0;
+}
+.footer-col{
+  width: 25%;
+  padding: 0 15px;
+}
+.footer-col h4{
+  font-size: 18px;
+  color: $greyTua;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+}
+.footer-col h4::before{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom: -10px;
+  background-color: $creame;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 300;
+  color: $greyTua;
+  display: block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.footer-col ul li a:hover{
+  color: #ffffff;
+  padding-left: 8px;
+}
+.footer-col .social-links a{
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background-color: $creame;
+  margin: 10px 10px 0;
+  text-align: center;
+  line-height: 55px;
+  border-radius: 50%;
+  color: $green;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links svg {
+  fill: $green;
+
+}
+.footer-col .social-links svg:hover{
+  fill: $creame;
+}
+
+.footer-col .social-links a:hover{
+  background-color: $green;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+  }
+}
