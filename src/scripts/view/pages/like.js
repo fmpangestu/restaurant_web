@@ -1,26 +1,22 @@
+// import FavoriteRestaurantIdb from '../../data/favorite-rest-idb';
+// import { createRestItemTemplate } from '../templates/template-creator';
 import FavoriteRestaurantIdb from '../../data/favorite-rest-idb';
-import { createRestItemTemplate } from '../templates/template-creator';
+import FavoriteRestaurantView from './liked-restaurant/favorite-restaurant-view';
+import FavoriteRestaurantShowPresenter from './liked-restaurant/favorite-restaurant-show-presenter';
+import FavoriteRestaurantSearchPresenter from './liked-restaurant/favorite-restaurant-search-presenter';
+
+const view = new FavoriteRestaurantView();
 
 const Like = {
   async render() {
-    return `
-<div class="content">
-        <div class="headline_content">
-          <h1 class="headline_title">Explore Restaurant</h1>
-          <p class="headline_sub">Restaurant Favorite</p>
-        </div>
-    <div id="restaurants">
-    </div>
-</div>
-      `;
+    return view.getTemplate();
   },
-  async afterRender() {
-    const restaurant = await FavoriteRestaurantIdb.getAllRestaurant();
-    const restaurantContainer = document.querySelector('#restaurants');
 
-    restaurant.forEach((rest) => {
-      restaurantContainer.innerHTML += createRestItemTemplate(rest);
-    });
+  async afterRender() {
+    // eslint-disable-next-line no-new
+    new FavoriteRestaurantShowPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
+    // eslint-disable-next-line no-new
+    new FavoriteRestaurantSearchPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
   },
 };
 

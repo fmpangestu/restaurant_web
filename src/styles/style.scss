@@ -490,16 +490,57 @@ ul{
 .footer-col .social-links a:hover{
   background-color: $green;
 }
+//query
+#query {
+  width: 30%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  transition: width 0.7s, font-size 0.7s;
+}
+
+#query:focus {
+  width: 50%; /* Contoh: lebar input saat fokus */
+  font-size: 18px; /* Contoh: ukuran font saat fokus */
+}
+#query::placeholder{
+  color: $green;
+  font-style: italic;
+  font-size: 15px;
+}
 
 /*responsive*/
-@media(max-width: 767px){
+@media(max-width: 1000px){
+  #query{
+    width: 60%;
+  }
+  #query:focus {
+    width: 100%;
+  }
+}@media(max-width: 767px){
   .footer-col{
     width: 50%;
     margin-bottom: 30px;
   }
+  #query{
+    width: 60%;
+  }
+  #query:focus {
+    width: 100%;
+  }
 }
 @media(max-width: 574px){
   .footer-col{
+    width: 100%;
+  }
+  #query{
+    width: 100%;
+  }
+  #query:focus {
     width: 100%;
   }
 }

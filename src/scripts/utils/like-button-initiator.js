@@ -7,6 +7,8 @@ const LikeButtonInitiator = {
     this._likeButtonContainer = likeButtonContainer;
     // eslint-disable-next-line no-underscore-dangle
     this._restaurant = restaurant;
+    // eslint-disable-next-line no-underscore-dangle
+    this._favoriteRestaurant = FavoriteRestaurantIdb;
 
     // eslint-disable-next-line no-underscore-dangle
     await this._renderButton();
@@ -29,6 +31,7 @@ const LikeButtonInitiator = {
 
   // eslint-disable-next-line no-underscore-dangle
   async _isRestaurantExist(id) {
+    // eslint-disable-next-line no-underscore-dangle
     const rest = await FavoriteRestaurantIdb.getRestaurant(id);
     return !!rest;
   },

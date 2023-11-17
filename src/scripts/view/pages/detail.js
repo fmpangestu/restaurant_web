@@ -3,6 +3,7 @@ import UrlParser from '../../routes/url-parser';
 import DataSource from '../../data/datasource';
 import { createRestDetailTemplate } from '../templates/template-creator';
 import LikeButtonInitiator from '../../utils/like-button-initiator';
+import FavoriteRestaurantIdb from '../../data/favorite-rest-idb';
 
 const Detail = {
   async render() {
@@ -81,6 +82,7 @@ const Detail = {
 
     await LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
+      favoriteRestaurant: FavoriteRestaurantIdb,
       restaurant: {
         id: detail.id,
         name: detail.name,

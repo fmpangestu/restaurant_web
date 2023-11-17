@@ -31,7 +31,11 @@
 
     <div class="nav">
         <div class="logo">
-            <img src="./images/logo/Fransisco.png" width="120px" alt="Logo Ayok ngopi"/>
+            <picture>
+<!--                <source type="image/webp" srcset="/images/logo/Fransisco.webp">-->
+                <source type="image/png" media="max-width: 500px" srcset="/images/logo/Fransisco.png">
+                <img src="/images/logo/Fransisco.png" width="120px" alt="Logo Ayok ngopi"/>
+            </picture>
         </div>
 
         <!-- nav -->
@@ -53,7 +57,7 @@
         </p>
     </div>
 </div>
-<main id="mainContent"tabindex="-1">
+<main id="mainContent" tabindex="-1">
     <section class="content">
         <article class="headline">
             <div class="headline_content">
@@ -63,7 +67,7 @@
         </article>
         <div class="list">
             <div class="post">
-                <div id="restaurantList"></div>
+                <!--                <div id="restaurantList"></div>-->
             </div>
         </div>
     </section>
@@ -120,7 +124,7 @@
                 </div>
             </div>
         </div>
-            <p aria-label="Copyright&#169;2023 - Yok Ngopi" tabindex="0">Copyright&#169;2023 - Yok Ngopi</p>
+        <p aria-label="Copyright&#169;2023 - Yok Ngopi" tabindex="0">Copyright&#169;2023 - Yok Ngopi</p>
     </div>
 </footer>
 </body>

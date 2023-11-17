@@ -116,7 +116,16 @@ nav ul li a:hover {
     font-weight: 400;
     text-shadow: 2px 2px 4px rgba(26, 23, 23, 0.76);
 }
+@media (max-width: 600px) {
+    .hero {
+        background-image: url("../public/images/heros/hero-image_4.jpg");
+        /* Ganti dengan gambar untuk tampilan mobile */
+    }
 
+    .hero_inner {
+        padding: 20px; /* Sesuaikan padding sesuai kebutuhan pada tampilan mobile */
+    }
+}
 /*main*/
 main {
     width: 100%;

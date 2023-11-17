@@ -5,6 +5,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+// eslint-disable-next-line import/no-extraneous-dependencies
+const ImageminMozjpeg = require('imagemin-mozjpeg');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: {
@@ -14,6 +22,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -44,6 +53,29 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -54,12 +86,36 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/public/'),
           to: path.resolve(__dirname, 'dist/'),
+          globOptions: {
+            ignore: ['**/images/heros/**'],
+          },
         },
       ],
     }),
+
     new WorkboxWebpackPlugin.InjectManifest({
       swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
       swDest: './sw.bundle.js',
     }),
+    new ImageminWebpackPlugin({
+      plugins: [
+        ImageminMozjpeg({
+          quality: 150,
+          progressive: true,
+        }),
+      ],
+    }),
+    new ImageminWebpWebpackPlugin({
+      config: [
+        {
+          test: /\.(jpe?g|png)/,
+          options: {
+            quality: 50,
+          },
+        },
+      ],
+      overrideExtension: true,
+    }),
+    new BundleAnalyzerPlugin(),
   ],
 };

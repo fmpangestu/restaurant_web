@@ -27,7 +27,10 @@ document.addEventListener('click', (event) => {
 });
 const createRestDetailTemplate = (rest) => `
   <h2 class="restaurant__title">${rest.restaurant.name}</h2>
+  <picture>
+  <source media="max-width: 600px" srcset="${CONFIG.BASE_IMAGE_URL + rest.restaurant.pictureId}">
   <img class="restaurant__poster" src="${CONFIG.BASE_IMAGE_URL + rest.restaurant.pictureId}" alt="${rest.restaurant.name}" />
+  </picture>
   <div class="restaurant__info" aria-label="information restaurant">
     <h2 aria-label="information">Information</h2>
     <h4 aria-label="Address">Address</h4>
@@ -91,14 +94,17 @@ function generateStarRating(rating) {
 const createRestItemTemplate = (rest) => `
       <article class="card" tabindex="0">
         <p class="city" aria-label="Kota ${rest.city},">${rest.city}</p>
-        <img src="${CONFIG.BASE_IMAGE_URL + rest.pictureId}" alt="${rest.name}">
+        <picture>
+        <source media="(max-width:600px)" srcset="${CONFIG.BASE_IMAGE_URL + rest.pictureId}">
+        <img data-src="${CONFIG.BASE_IMAGE_URL + rest.pictureId}" alt="${rest.name || '-'}" class="lazyload">
+        </picture>
         <div class="card-content">
-            <h3 class="name_resto" aria-label="Nama restoraunt ${rest.name},">${rest.name}</h3>
+            <h3 class="restaurant__title" aria-label="Nama restoraunt ${rest.name},">${rest.name || '-'}</h3>
             <div class="rating" >
-            <p aria-label="rating ${rest.rating},">${generateStarRating(rest.rating)} ${rest.rating}</p>
-            <p><a href="/#/detail/${rest.id}" aria-label="detail restaurant ${rest.name}," class="detail">Detail</a></p>
+            <p aria-label="rating ${rest.rating},">${generateStarRating(rest.rating)} ${rest.rating || '-'}</p>
+            <p class="lengkap"><a href="/#/detail/${rest.id}" aria-label="detail restaurant ${rest.name}," class="detail">Detail</a></p>
             </div>
-            <p class="description" aria-label="Description restaurant ${rest.description},">${rest.description}</p>
+            <p class="description" aria-label="Description restaurant ${rest.description},">${rest.description || '-'}</p>
         </div>
     </article>
 `;

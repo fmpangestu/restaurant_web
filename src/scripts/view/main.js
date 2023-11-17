@@ -5,6 +5,7 @@
 import Drawer from '../utils/drawer';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
+
 class App {
   constructor({ burger, navbar, content }) {
     this.burger = burger;
@@ -27,6 +28,7 @@ class App {
     const page = routes[url];
     this.content.innerHTML = await page.render();
     await page.afterRender();
+
     const skipLink = document.querySelector('.skip-link');
     const mainContent = document.querySelector('#mainContent');
 
