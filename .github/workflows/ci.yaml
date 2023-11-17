@@ -23,6 +23,3 @@ jobs:
         run: |
           npm install
           npm run test
-        env:
-          CI: true
-          API_KEY_REST: ${{ secrets.API_KEY_REST }}
