@@ -1,5 +1,7 @@
 const path = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
+const webpack = require('webpack');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -13,6 +15,10 @@ const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+require('dotenv').config({
+  path: path.resolve('.env'),
+});
 
 module.exports = {
   entry: {
@@ -115,6 +121,9 @@ module.exports = {
         },
       ],
       overrideExtension: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
     new BundleAnalyzerPlugin(),
   ],

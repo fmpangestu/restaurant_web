@@ -1,5 +1,5 @@
 const CONFIG = {
-  BASE_URL: 'https://restaurant-api.dicoding.dev/',
+  BASE_URL: process.env.API_KEY_REST,
   BASE_IMAGE_URL: 'https://restaurant-api.dicoding.dev/images/small/',
   DEFAULT_LANGUAGE: 'en-us',
   DATABASE_NAME: 'restaurant-apps-database',
