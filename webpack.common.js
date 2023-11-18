@@ -1,26 +1,64 @@
 const path = require('path');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-// eslint-disable-next-line import/no-extraneous-dependencies
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 require('dotenv').config({
   path: path.resolve('.env'),
 });
+
+const plugins = [
+  new CleanWebpackPlugin(),
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: path.resolve(__dirname, 'src/templates/index.html'),
+  }),
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: path.resolve(__dirname, 'src/public/'),
+        to: path.resolve(__dirname, 'dist/'),
+        globOptions: {
+          ignore: ['**/images/heros/**'],
+        },
+      },
+    ],
+  }),
+  new WorkboxWebpackPlugin.InjectManifest({
+    swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
+    swDest: './sw.bundle.js',
+  }),
+  new ImageminWebpackPlugin({
+    plugins: [
+      ImageminMozjpeg({
+        quality: 150,
+        progressive: true,
+      }),
+    ],
+  }),
+  new ImageminWebpWebpackPlugin({
+    config: [
+      {
+        test: /\.(jpe?g|png)/,
+        options: {
+          quality: 50,
+        },
+      },
+    ],
+    overrideExtension: true,
+  }),
+  new webpack.DefinePlugin({
+    'process.env': JSON.stringify(process.env),
+  }),
+  // Gunakan plugin BundleAnalyzer hanya saat mode produksi
+  process.env.NODE_ENV === 'production' ? new BundleAnalyzerPlugin() : null,
+].filter(Boolean);
 
 module.exports = {
   entry: {
@@ -84,50 +122,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, 'src/templates/index.html'),
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'src/public/'),
-          to: path.resolve(__dirname, 'dist/'),
-          globOptions: {
-            ignore: ['**/images/heros/**'],
-          },
-        },
-      ],
-    }),
-
-    new WorkboxWebpackPlugin.InjectManifest({
-      swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
-      swDest: './sw.bundle.js',
-    }),
-    new ImageminWebpackPlugin({
-      plugins: [
-        ImageminMozjpeg({
-          quality: 150,
-          progressive: true,
-        }),
-      ],
-    }),
-    new ImageminWebpWebpackPlugin({
-      config: [
-        {
-          test: /\.(jpe?g|png)/,
-          options: {
-            quality: 50,
-          },
-        },
-      ],
-      overrideExtension: true,
-    }),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env),
-    }),
-    new BundleAnalyzerPlugin(),
-  ],
+  plugins,
 };
