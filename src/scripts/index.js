@@ -1,9 +1,10 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import 'regenerator-runtime';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'lazysizes';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies,import/no-unresolved
 import filterContacts from 'lodash.filter';
 // eslint-disable-next-line no-unused-vars
 import css from '../styles/style.scss';
