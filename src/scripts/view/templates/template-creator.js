@@ -57,7 +57,7 @@ const createRestDetailTemplate = (rest) => `
   <div class="customer__riview">
 <h3 aria-label="riview customer,">Customer Reviews</h3>
 ${rest.restaurant.customerReviews.map((review) => `
-<p aria-label="${review.name}"><span>${review.name}</span</p>
+<p class="review__name" aria-label="${review.name}"><span>${review.name}</span</p>
 <p class="date__review" aria-label="${review.date}">${review.date}</p>
 <p class="review__value" aria-label="${review.review}">Riview: <span>${limitReviewText(review.review)}</span></p>
 <hr>

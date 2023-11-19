@@ -7,14 +7,14 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 require('dotenv').config({
   path: path.resolve('.env'),
 });
 
 const plugins = [
-  new CleanWebpackPlugin(),
+  // new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: path.resolve(__dirname, 'src/templates/index.html'),
@@ -24,9 +24,9 @@ const plugins = [
       {
         from: path.resolve(__dirname, 'src/public/'),
         to: path.resolve(__dirname, 'dist/'),
-        globOptions: {
-          ignore: ['**/images/heros/**'],
-        },
+        // globOptions: {
+        //   ignore: ['**/images/heros/**'],
+        // },
       },
     ],
   }),

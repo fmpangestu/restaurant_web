@@ -92,10 +92,11 @@ nav ul li a:hover {
     min-height: 550px;
     width: 100%;
     text-align: center;
-    background-image: url("../public/images/heros/hero-image_4.jpg");
+    /*background-image: url("../public/images/heros/hero-image_4.jpg");*/
+    background-image: url("/dist/images/heros/hero-image_4-large.jpg");
     background-position: center;
-    background-repeat: repeat;
-    background-color: green;
+    /*background-repeat: repeat;*/
+    /*background-color: green;*/
 }
 
 .hero_inner {
@@ -118,12 +119,15 @@ nav ul li a:hover {
 }
 @media (max-width: 600px) {
     .hero {
-        background-image: url("../public/images/heros/hero-image_4.jpg");
-        /* Ganti dengan gambar untuk tampilan mobile */
+        /*background-image: url("../public/images/heros/hero-image_4.jpg");*/
+        background-image: url("/dist/images/heros/hero-image_4-small.jpg");
+        background-position: center;
+        background-repeat: repeat;
+        background-color: green;
     }
 
     .hero_inner {
-        padding: 20px; /* Sesuaikan padding sesuai kebutuhan pada tampilan mobile */
+        padding: 20px;
     }
 }
 /*main*/

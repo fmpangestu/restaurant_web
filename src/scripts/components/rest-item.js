@@ -147,9 +147,12 @@
 //         <div class="card-content">
 //             <h3 class="name_resto" aria-label="Nama restoraunt ${rest.name},">${rest.name}</h3>
 //             <div class="rating" >
+// eslint-disable-next-line max-len
 //             <p aria-label="rating ${rest.rating},">${this.generateStarRating(rest.rating)} ${rest.rating}</p>
+// eslint-disable-next-line max-len
 //             <p><a href="/#/detail/${rest.id}" aria-label="detail restaurant ${rest.name}," class="detail">Detail</a></p>
 //             </div>
+// eslint-disable-next-line max-len
 //             <p class="description" aria-label="Description restaurant ${rest.description},">${rest.description}</p>
 //         </div>
 //     </article>
