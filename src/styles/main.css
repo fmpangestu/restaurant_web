@@ -203,7 +203,7 @@ main {
         position: fixed;
         width: 100%;
         right: 0;
-        top: -100%;
+        top: -1000%;
         height: 100vh;
         flex-direction: column;
         background: #fff;

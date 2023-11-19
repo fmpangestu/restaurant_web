@@ -21,7 +21,7 @@ exports.config = {
   include: {
     I: './steps_file.js',
   },
-  name: 'restaurant-pushnotif-for-e2e-demo',
+  name: 'restaurant-apps',
   plugins: {
     retryFailedStep: {
       enabled: true,

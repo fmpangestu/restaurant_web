@@ -16,22 +16,36 @@ Scenario('showing empty liked restaurants', ({ I }) => {
 
 // eslint-disable-next-line no-undef
 Scenario('liking one restaurant', async ({ I }) => {
+  I.amOnPage('/#/like');
+
+  // Pastikan halaman '/#/like' terbuka
+  I.seeElement('.restaurants');
   I.dontSee('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
 
+  // Navigasi kembali ke halaman utama
   I.amOnPage('/');
-  // eslint-disable-next-line no-undef
-  const firstDetailLink = locate('.lengkap a').first();
-  const firstRestaurantName = await I.grabTextFrom('.lengkap a');
-  I.click(firstDetailLink);
+
+  // Pastikan elemen ".card-content .lengkap" terlihat
+  I.seeElement('.card-content .lengkap');
+
+  // Dapatkan teks dari restoran pertama
+  const firstRestaurantName = await I.grabTextFrom('.restaurant__title');
+  I.click('.card-content .lengkap');
+
+  // Lakukan aksi 'like' pada restoran
+  I.wait(2);
   I.seeElement('#likeButton');
   I.click('#likeButton');
-  I.wait(2);
   I.amOnPage('/#/like');
   I.seeElement('.card');
+
+  // Dapatkan teks dari restoran yang disukai
   const likedRestaurantName = await I.grabTextFrom('.restaurant__title');
 
+  // Periksa apakah restoran yang disukai sesuai dengan yang pertama kali dilihat
   assert.strictEqual(firstRestaurantName, likedRestaurantName);
 });
+
 // eslint-disable-next-line no-undef
 Scenario('unliking one restaurant', async ({ I }) => {
   I.amOnPage('/#/like');
@@ -53,48 +67,51 @@ Scenario('unliking one restaurant', async ({ I }) => {
 });
 // eslint-disable-next-line no-undef
 Scenario('searching restaurants', async ({ I }) => {
+  // Pastikan tidak ada pesan 'Tidak ada restaurant untuk ditampilkan'
   I.dontSee('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
 
+  // Akses halaman utama
   I.amOnPage('/');
 
-  I.seeElement('.lengkap a');
+  // Pastikan ada elemen ".card-content .lengkap"
+  I.seeElement('.card-content .lengkap');
 
   const names = [];
 
-  // eslint-disable-next-line no-plusplus
+  // Klik beberapa restoran untuk menyukainya
   for (let i = 1; i <= 3; i++) {
-    // eslint-disable-next-line no-undef
-    I.click(locate('.lengkap a').at(i));
-
+    I.click(locate('.card-content .lengkap').at(i));
     I.seeElement('#likeButton');
     I.click('#likeButton');
     I.wait(2);
-    // eslint-disable-next-line no-await-in-loop
     names.push(await I.grabTextFrom('.restaurant__title'));
-
+    // Kembali ke halaman utama
     I.amOnPage('/');
   }
 
+  // Buka halaman '/#/like'
   I.amOnPage('/#/like');
   I.seeElement('#query');
 
+  // Periksa jumlah restoran yang disukai
   const visibleLikedRestaurants = await I.grabNumberOfVisibleElements('.card');
   assert.strictEqual(names.length, visibleLikedRestaurants);
 
+  // Ambil query pencarian dari restoran yang disukai
   const searchQuery = names[1].substring(1, 3);
 
+  // Lakukan pencarian
   I.fillField('#query', searchQuery);
   I.pressKey('Enter');
+
+  // Pastikan hasil pencarian sesuai dengan ekspektasi
   const matchingRestaurants = names.filter((name) => name.indexOf(searchQuery) !== -1);
   const visibleSearchedLikedRestaurants = await I.grabNumberOfVisibleElements('.card');
-
   assert.strictEqual(matchingRestaurants.length, visibleSearchedLikedRestaurants);
 
-  // eslint-disable-next-line no-plusplus
+  // Verifikasi setiap restoran yang ditampilkan sesuai dengan hasil pencarian
   for (let i = 0; i < matchingRestaurants.length; i++) {
-    // eslint-disable-next-line no-await-in-loop,no-undef
     const visibleName = await I.grabTextFrom(locate('.restaurant__title').at(i + 1));
-
     assert.strictEqual(matchingRestaurants[i], visibleName);
   }
 });

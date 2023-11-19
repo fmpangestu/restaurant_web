@@ -92,7 +92,7 @@ function generateStarRating(rating) {
   return starHTML;
 }
 const createRestItemTemplate = (rest) => `
-      <article class="card" tabindex="0">
+      <article class="card" tabindex="0" data-restaurant-id="${rest.id}">
         <p class="city" aria-label="Kota ${rest.city},">${rest.city}</p>
         <picture>
         <source media="(max-width:600px)" srcset="${CONFIG.BASE_IMAGE_URL + rest.pictureId}">
