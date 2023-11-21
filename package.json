@@ -13,7 +13,7 @@
     "build-image": "node sharp.js"
   },
   "keywords": [],
-  "author": "farhan maulana pangestu <farhanmaulana1710@yahoo.com>",
+  "author": "Farhan Maulana Pangestu <farhanmaulana1710@yahoo.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.5",
